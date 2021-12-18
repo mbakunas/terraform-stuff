@@ -4,5 +4,6 @@ terraform {
     storage_account_name = "bakunas"
     container_name       = "terraform-state"
     key                  = "terraform.tfstate"
+    use_azuread_auth     = true
   }
 }
