@@ -20,6 +20,22 @@ jobs:
             tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             subscription-id: ${{ secrets.AZURE_SANDBOX1 }}
 
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.10
+          
+      - name: Terraform Init
+        id: init
+        env:
+          RESOURCE_GROUP: ${{ secrets.TF_BACK_END_STORAGE_ACCOUNT }}
+          STORAGE_ACCOUNT: ${{ secrets.TF_BACK_END_STORAGE_ACCOUNT }}
+          CONTAINER_NAME: ${{ secrets.TF_BACK_END_CONTAINER_NAME }}
+        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"
+
       - name: Run Azure CLI commands
         run: |
           az account show
