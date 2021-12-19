@@ -31,7 +31,7 @@ jobs:
       - name: Terraform Init
         id: init
         env:
-          RESOURCE_GROUP: ${{ secrets.TF_BACK_END_STORAGE_ACCOUNT }}
+          RESOURCE_GROUP: ${{ secrets.TF_BACK_END_RESOURCE_GROUP }}
           STORAGE_ACCOUNT: ${{ secrets.TF_BACK_END_STORAGE_ACCOUNT }}
           CONTAINER_NAME: ${{ secrets.TF_BACK_END_CONTAINER_NAME }}
         run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"
