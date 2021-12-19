@@ -26,9 +26,9 @@ jobs:
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SANDBOX1 }}
-          RESOURCE_GROUP: ${{ secrets.TF_BACK_END_RESOURCE_GROUP }}
-          STORAGE_ACCOUNT: ${{ secrets.TF_BACK_END_STORAGE_ACCOUNT }}
-          CONTAINER_NAME: ${{ secrets.TF_BACK_END_CONTAINER_NAME }}
+          RESOURCE_GROUP: ${{ secrets.TF_BACKEND_RESOURCE_GROUP }}
+          STORAGE_ACCOUNT: ${{ secrets.TF_BACKEND_STORAGE_ACCOUNT }}
+          CONTAINER_NAME: ${{ secrets.TF_BACKEND_CONTAINER_NAME }}
         run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="use_azuread_auth=true"
 
       - name: Terraform Plan
