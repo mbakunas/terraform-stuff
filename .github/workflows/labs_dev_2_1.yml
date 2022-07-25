@@ -1,0 +1,62 @@
+name: 'Deploy with Terraform'
+
+# Controls when the workflow will run
+on:
+  # Workflow will run on upon a commit
+  push:
+    branches: 
+      - main
+    paths:
+      - "labs_dev_2_1/**"
+  workflow_dispatch:
+
+env:
+  state_resourceGroup: TF-State-01
+  state_storageAccount: bakunastfstate01
+  state_containerName: labsdev21
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+ terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+          
+      - name: Terraform Init
+        id: init
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SANDBOX1 }}
+          RESOURCE_GROUP: ${{ env.state_resourceGroup }}
+          STORAGE_ACCOUNT: ${{ env.state_storageAccount }}
+          CONTAINER_NAME: ${{ env.state_containerName }}
+        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="use_azuread_auth=true"
+
+      - name: Terraform Plan
+        id: plan
+        if: true == false
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SANDBOX1 }}
+        run: terraform plan -no-color
+        
+      - name: Terraform Apply
+        if: true = false
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SANDBOX1 }}
+        run: terraform apply -auto-approve
