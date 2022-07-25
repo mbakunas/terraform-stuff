@@ -1,4 +1,4 @@
-name: 'Deploy with Terraform'
+name: 'TF Lab Day 1'
 
 # Controls when the workflow will run
 on:
