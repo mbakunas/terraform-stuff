@@ -20,6 +20,6 @@ resource "azurerm_storage_account" "labsdev2" {
     name                     = "labsdev2"
     resource_group_name      = azurerm_resource_group.labs_dev_2_rg.name
     location                 = azurerm_resource_group.labs_dev_2_rg.location
-    access_tier              = "Standard"
+    account_tier             = "Standard"
     account_replication_type = "GRS"
 }
