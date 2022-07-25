@@ -44,7 +44,6 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        if: true == false
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
