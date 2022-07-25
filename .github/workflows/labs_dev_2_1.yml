@@ -54,7 +54,7 @@ jobs:
         run: terraform plan -no-color
         
       - name: Terraform Apply
-        if: true == false
+        id: apply
         working-directory: ./labs_dev_2_1
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
