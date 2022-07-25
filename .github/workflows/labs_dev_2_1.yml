@@ -32,6 +32,7 @@ jobs:
           
       - name: Terraform Init
         id: init
+        working-directory: ./labs_dev_2_1
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -44,6 +45,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
+        working-directory: ./labs_dev_2_1
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -53,6 +55,7 @@ jobs:
         
       - name: Terraform Apply
         if: true == false
+        working-directory: ./labs_dev_2_1
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
