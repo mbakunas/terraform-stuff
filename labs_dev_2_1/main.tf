@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "azurerm" {
-  # Configuration options
+  features {}
 }
 
 resource "azurerm_resource_group" "labs_dev_2_rg" {
@@ -21,5 +21,5 @@ resource "azurerm_storage_account" "labsdev2" {
     resource_group_name      = azurerm_resource_group.labs_dev_2_rg.name
     location                 = azurerm_resource_group.labs_dev_2_rg.location
     account_tier             = "Standard"
-    account_replication_type = "GRS"
+    account_replication_type = "LRS"
 }
