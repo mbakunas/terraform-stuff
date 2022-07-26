@@ -50,7 +50,7 @@ resource "azurerm_windows_virtual_machine" "VM01" {
   admin_username = "azureAdmin"
   admin_password = "C0mplexPassw0rd!"
   network_interface_ids = [
-    azurerm_network_interface.vm01nic.nic
+    azurerm_network_interface.vm01nic.id
   ]
 
   os_disk {
