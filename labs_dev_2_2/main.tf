@@ -37,7 +37,7 @@ resource "azurerm_network_interface" "vm01nic" {
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = azurerm_virtual_network.vnet01.subnet[0].id
+    subnet_id                     = azurerm_virtual_network.vnet01.subnet.*.id[0]
     private_ip_address_allocation = "Dynamic"
   } 
 }
