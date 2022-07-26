@@ -17,7 +17,7 @@ resource "azurerm_resource_group" "labs_dev_2_2_rg" {
 }
 
 // need vnet and a subnet
-resource "azurerm_virtual_network" "VNet01" {
+resource "azurerm_virtual_network" "vnet01" {
   name                = "VNet01"
   location            = azurerm_resource_group.labs_dev_2_2_rg.location
   resource_group_name = azurerm_resource_group.labs_dev_2_2_rg.name
@@ -25,7 +25,7 @@ resource "azurerm_virtual_network" "VNet01" {
 
   subnet {
     name           = "CorpNet"
-    address_prifix = "10.0.1.0/24"
+    address_prefix = "10.0.1.0/24"
   }
 }
 
@@ -37,7 +37,7 @@ resource "azurerm_network_interface" "vm01nic" {
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = azurerm_virtual_network.subnet[0].id
+    subnet_id                     = azurerm_virtual_network.vnet01.subnet[0].id
     private_ip_address_allocation = "Dynamic"
   } 
 }
