@@ -17,7 +17,7 @@ resource "azurerm_resource_group" "labs_dev_2_2_rg" {
 }
 
 // need vnet and a subnet
-resource "azurevm_virtual_network" "VNet01" {
+resource "azurerm_virtual_network" "VNet01" {
   name                = "VNet01"
   location            = azurerm_resource_group.labs_dev_2_2_rg.location
   resource_group_name = azurerm_resource_group.labs_dev_2_2_rg.name
