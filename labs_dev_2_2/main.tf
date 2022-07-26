@@ -43,12 +43,12 @@ resource "azurerm_network_interface" "vm01nic" {
 }
 
 resource "azurerm_windows_virtual_machine" "VM01" {
-  name = "VM01"
+  name                = "VM01"
   resource_group_name = azurerm_resource_group.labs_dev_2_2_rg.name
-  location = azurerm_resource_group.labs_dev_2_2_rg.location
-  size = "Standard_B2s"
-  admin_username = "azureAdmin"
-  admin_password = "C0mplexPassw0rd!"
+  location            = azurerm_resource_group.labs_dev_2_2_rg.location
+  size                = "Standard_B2s"
+  admin_username      = "azureAdmin"
+  admin_password      = "C0mplexPassw0rd!"
   network_interface_ids = [
     azurerm_network_interface.vm01nic.id
   ]
