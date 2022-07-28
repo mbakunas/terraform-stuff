@@ -5,6 +5,13 @@ terraform {
       version = "3.15.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "TF-State-01"
+    storage_account_name = "bakunastfstate01"
+    container_name       = "labsdev22"
+    key                  = "prod.terraform.tfstate"  // the name of the blob that stores the state
+    
+  }
 }
 
 provider "azurerm" {
